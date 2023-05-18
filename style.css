@@ -1,0 +1,73 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 95vh;
+}
+
+#container {
+    width: 350px;
+    height: 500px;
+    background-color: gray;
+    display: flex;
+    flex-direction: column;
+}
+
+.display {
+    height: 140px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+}
+
+.display div {
+    border: 1px solid black; 
+    text-align: right;
+    flex: 1;
+    justify-content: flex-end;
+    align-items: center;
+    display: flex;
+    padding: 5px;
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.bottom-part {
+    display: flex;
+    flex: 1;
+}
+
+#number-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    width: 70%;
+}
+
+.button-number {
+    width: 33%;
+    /* border: 1px solid black; */
+    cursor: pointer;
+}
+
+.clear {
+    flex: 1;
+}
+
+#operators {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.operator-button {
+    flex: 1;
+}
+
+.operate-button {
+    flex: 1;
+}
