@@ -4,8 +4,8 @@ let operator;
 let firstNumberRegistered = false;
 let equalMode = false;
 let operatorMode = false;
+let errorMode = false;
 const mainDisplay = document.querySelector('.display-current');
-const secondDisplay = document.querySelector('.display-last');
 
 function add(n1, n2) {
     // a = +a;
@@ -26,6 +26,10 @@ function multiply(n1, n2) {
 }
 
 function divide(n1, n2) {
+    if (n1 == 0 || n2 == 0){
+        errorMode = true;        
+        return;
+    }
     a = n1 / n2;
     a = Math.round(a*100) / 100;
     b = 0;
@@ -35,7 +39,16 @@ function operate(n1, n2, operator) {
     operator == '+' ? add(n1, n2) :
     operator == '-' ? substract(n1, n2) :
     operator == '*' ? multiply(n1, n2) :
-    divide(n1, n2);    
+    divide(n1, n2);
+    if(errorMode) {
+        mainDisplay.textContent = 'ERROR';
+        a = '';
+        b = '';
+        operator = '';
+        firstNumberRegistered = false;
+        operatorMode = false;
+        equalMode = false;
+    }
     if(equalMode){        
         mainDisplay.textContent = a;
     }
@@ -49,6 +62,10 @@ const numberButtons = document.querySelectorAll('.button-number');
 numberButtons.forEach(number => {
     number.addEventListener('click', () => {
         operatorMode = false;
+        if(errorMode){
+            errorMode = false;
+            mainDisplay.textContent = '';
+        }
         if(equalMode == true) {
             mainDisplay.textContent = '';
             a = '';
@@ -93,7 +110,7 @@ operatorButtons.forEach(button => {
 const operateButton = document.querySelector('.operate-button');
 
 operateButton.addEventListener('click', () => {
-    if(a == 0 || a == ''){
+    if(!a){
         return;
     }
     if(b == '') {
@@ -109,9 +126,11 @@ const clearButton = document.querySelector('.clear');
 clearButton.addEventListener('click', () =>{
     a = '';
     b = '';
+    operator = '';
     mainDisplay.textContent = '';
     firstNumberRegistered = false;
     operatorMode = false;
+    equalMode = false;
 });
 
 const dotButton = document.querySelector('.button-dot');
