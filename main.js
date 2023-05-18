@@ -45,6 +45,12 @@ const numberButtons = document.querySelectorAll('.button-number');
 
 numberButtons.forEach(number => {
     number.addEventListener('click', () => {
+        if(equalMode == true) {
+            mainDisplay.textContent = '';
+            a = '';
+            firstNumberRegistered = false;
+            equalMode = false;
+        }
         if(!firstNumberRegistered) {
             a += number.textContent;
             mainDisplay.textContent += number.textContent;
