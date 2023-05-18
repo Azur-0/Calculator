@@ -93,6 +93,12 @@ operatorButtons.forEach(button => {
 const operateButton = document.querySelector('.operate-button');
 
 operateButton.addEventListener('click', () => {
+    if(a == 0 || a == ''){
+        return;
+    }
+    if(b == '') {
+        return;
+    }
     operatorMode = false;
     equalMode = true;
     operate(a, b, operator);    
